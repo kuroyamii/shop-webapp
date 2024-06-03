@@ -1,6 +1,28 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/header/navbar";
+import { ConfigProvider, ThemeConfig } from "antd";
+import AnimatedBlobBackground from "@/components/background/animatedBlobBackground";
+import TanstackQueryProvider from "@/providers/tanstackQueryProvider";
+import StoreProvider from "@/providers/storeProvider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const customTheme: ThemeConfig = {
+  components: {
+    Pagination: {
+      colorText: "white",
+      colorTextDisabled: "rgba(255,255,255,0.5)",
+    },
+    Breadcrumb: {
+      separatorColor: "rgba(255,255,255,0.6)",
+      linkColor: "white",
+      linkHoverColor: "#ecc94b",
+      colorText: "white",
+    },
+  },
+};
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +38,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className + " max-w-[100vw] overflow-x-hidden"}>
+        <StoreProvider>
+          <TanstackQueryProvider>
+            <ConfigProvider theme={customTheme}>
+              <Navbar />
+              <AnimatedBlobBackground />
+              <main className="max-w-[1220px] mx-auto pt-24">{children}</main>
+            </ConfigProvider>
+          </TanstackQueryProvider>
+        </StoreProvider>
+      </body>
     </html>
   );
 }
