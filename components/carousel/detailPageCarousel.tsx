@@ -13,7 +13,10 @@ const DetailPageCarousel = ({ productImages }: { productImages: string[] }) => {
   const [imageSourceUrls, setImageSourceUrls] = useState<string[]>();
   async function getImageBlob(index: number) {
     const res: Blob | AxiosError | unknown = await ProductAPI.getImage(
-      productImages[index].replace("[", "").replace("]", "").replace(`"`, "")
+      productImages[index]
+        .replaceAll("[", "")
+        .replaceAll("]", "")
+        .replaceAll(`"`, "")
     ).then((response) => {
       if (response instanceof Blob) {
         const reader = new FileReader();
@@ -44,7 +47,7 @@ const DetailPageCarousel = ({ productImages }: { productImages: string[] }) => {
       <div>
         <Slider ref={firstSliderRef} arrows={false}>
           {productImages?.map((image, idx) => (
-            <div>
+            <div key={idx}>
               <img
                 src={image}
                 alt=""
@@ -68,6 +71,7 @@ const DetailPageCarousel = ({ productImages }: { productImages: string[] }) => {
                 onClick={() => {
                   firstSliderRef?.current?.slickGoTo(idx);
                 }}
+                key={idx}
               >
                 <img
                   src={image}
@@ -85,6 +89,7 @@ const DetailPageCarousel = ({ productImages }: { productImages: string[] }) => {
                 onClick={() => {
                   firstSliderRef?.current?.slickGoTo(idx);
                 }}
+                key={idx}
               >
                 <img
                   src={image}

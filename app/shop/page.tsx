@@ -1,10 +1,15 @@
+import BackButton from "@/components/button/backButton";
 import ProductViewSection from "@/components/sections/productViewSection";
+import { Suspense } from "react";
 
 const ShopPage = () => {
   return (
-    <main>
-      <ProductViewSection />
-    </main>
+    <Suspense>
+      <main>
+        <BackButton />
+        <ProductViewSection />
+      </main>
+    </Suspense>
   );
 };
 

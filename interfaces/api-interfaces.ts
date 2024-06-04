@@ -12,10 +12,36 @@ export interface ProductsResponseInterface {
   updatedAt: string;
 }
 
-interface ProductCategoryInterface {
+export type ProductType = {
+  category: ProductCategoryInterface;
+  creationAt: string;
+  description: string;
+  id: number;
+  images: string[];
+  price: number;
+  title: string;
+  updatedAt: string;
+};
+
+export interface ProductCategoryInterface {
   creationAt: string;
   id: number;
   image: string;
   name: string;
   updatedAt: string;
+}
+
+export interface ProductRequestInterface {
+  title: string;
+  description: string;
+  images: string[];
+  price: number;
+  categoryId: number;
+}
+
+export interface ProductUpdateInterface {
+  title?: string;
+  description?: string;
+  images?: string[];
+  price?: number;
 }

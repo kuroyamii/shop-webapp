@@ -10,10 +10,12 @@ import { useEffect, useState } from "react";
 import { Button } from "../button/customButton";
 import MutateCartButton from "../button/mutateCartButton";
 
-const ProductCard = ({
+const CartCard = ({
   productData,
+  total,
 }: {
   productData: ProductsResponseInterface;
+  total: number;
 }) => {
   const [imageSourceUrl, setImageSourceUrl] = useState<string>("");
   async function getImageBlob() {
@@ -40,13 +42,13 @@ const ProductCard = ({
     getImageBlob();
   }, [productData]);
   return (
-    <div className="flex flex-col justify-between h-full space-y-4 w-[240px] bg-white bg-opacity-10 backdrop-blur-lg p-4 rounded-[16px] hover:cursor-pointer translate-y-0 hover:-translate-y-2 transition-all duration-500">
+    <div className="flex flex-col justify-between h-full space-y-4 w-[40rem] bg-white bg-opacity-10 backdrop-blur-lg p-4 rounded-[16px]">
       <Link
         href={"/shop/products/" + productData.id}
-        className="flex flex-col space-y-4"
+        className="flex flex-row items-center space-x-4"
       >
         <div
-          className={`relative w-52 h-52 top-0 left-0 overflow-hidden rounded-[8px] ${
+          className={`relative w-32 h-32 top-0 left-0 overflow-hidden rounded-[8px] ${
             imageSourceUrl === ""
               ? "border border-gray-500 bg-gray-900 bg-opacity-30"
               : ""
@@ -54,8 +56,8 @@ const ProductCard = ({
         >
           {imageSourceUrl === "" ? (
             <Skeleton.Image
-              style={{ height: "100%", width: "13rem" }}
-              className="w-52 h-52"
+              style={{ height: "100%", width: "8rem" }}
+              className="w-32 h-32"
               active
             />
           ) : (
@@ -71,23 +73,27 @@ const ProductCard = ({
             />
           )}
         </div>
-
-        <div className="flex flex-row w-full justify-between">
-          <div className="h-fit break-words max-w-[9rem]">
-            {productData.title.substring(0, 25) +
-              `${productData.title.length > 25 ? "..." : ""}`}
+        <div className="flex flex-col space-y-4">
+          <div className="flex flex-col max-w-[30rem] space-y-4">
+            <div className="h-fit break-words">
+              {productData.title.substring(0, 40) +
+                `${productData.title.length > 40 ? "..." : ""}`}
+            </div>
+            <div className="h-fit break-words text-sm ">
+              {productData.description.substring(0, 100) +
+                `${productData.description.length > 100 ? "..." : ""}`}
+            </div>
           </div>
-          <div className="h-fit text-xl font-bold text-yellow-100">
+          <div className="h-fit text-4xl font-bold text-yellow-100">
             {productData.price + "$"}
           </div>
         </div>
       </Link>
-
-      <div className="w-full">
+      <div>
         <MutateCartButton product={productData} />
       </div>
     </div>
   );
 };
 
-export default ProductCard;
+export default CartCard;

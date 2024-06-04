@@ -17,7 +17,9 @@ const ProductPreviewSection = () => {
     ProductsResponseInterface[]
   >({
     queryKey: ["products", limit, offset],
-    queryFn: () => ProductAPI.getProducts(limit, offset),
+
+    // Change later
+    queryFn: () => ProductAPI.getProducts(limit, offset, ""),
   });
 
   if (data) {

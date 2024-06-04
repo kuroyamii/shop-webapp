@@ -21,6 +21,14 @@ const customTheme: ThemeConfig = {
       linkHoverColor: "#ecc94b",
       colorText: "white",
     },
+    Table: {
+      headerBg: "#1A202C",
+      headerSplitColor: "rgba(255,255,255,0.4)",
+      headerColor: "white",
+      colorBgContainer: "rgba(255,255,255,0.1)",
+      colorText: "white",
+      borderColor: "rgba(255,255,255,0.2)",
+    },
   },
 };
 

@@ -44,6 +44,10 @@ const navLinks: NavigationButtonProps[] = [
     href: "/shop",
     label: "Shop",
   },
+  {
+    href: "/manage/products",
+    label: "Manage Products",
+  },
 ];
 const Navbar = () => {
   const { products } = useAppSelector((state) => state.cart);
@@ -55,7 +59,6 @@ const Navbar = () => {
       for (let item in products) {
         total += products[item].total;
       }
-      console.log(total);
       setIsCartFilled(true);
       setTotalInCart(total);
     } else {

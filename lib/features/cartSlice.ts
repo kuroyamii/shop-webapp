@@ -54,10 +54,17 @@ export const cartSlice = createSlice({
     ) => {
       delete state.products[action.payload.id];
     },
+    deleteAllProduct: (state, action: PayloadAction<boolean>) => {
+      state.products = {};
+    },
   },
 });
 
-export const { addProductToCart, decreaseProductInCart, removeProduct } =
-  cartSlice.actions;
+export const {
+  addProductToCart,
+  decreaseProductInCart,
+  removeProduct,
+  deleteAllProduct,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

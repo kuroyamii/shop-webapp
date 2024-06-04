@@ -82,3 +82,8 @@ body {
 .center-focus > .slick-center > * {
   transform: scale3d(1, 1, 1);
 }
+
+/* .ant-table-thead > tr > th {
+  background-color: #1a202c !important;
+  color: white !important;
+} */
