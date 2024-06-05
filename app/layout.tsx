@@ -46,7 +46,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " max-w-[100vw] overflow-x-hidden"}>
+      <body
+        className={
+          inter.className + " max-w-[100vw] overflow-x-hidden bg-black"
+        }
+      >
         <StoreProvider>
           <TanstackQueryProvider>
             <ConfigProvider theme={customTheme}>
